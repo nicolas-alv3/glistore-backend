@@ -6,6 +6,7 @@ async function bootstrap() {
         logger: ['error', 'warn', 'log'],
     });
     app.enableCors();
+    app.setGlobalPrefix('api/v1');
     await app.listen(8081);
 }
 
