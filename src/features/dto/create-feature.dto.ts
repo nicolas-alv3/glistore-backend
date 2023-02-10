@@ -1,6 +1,7 @@
 import {FeatureType} from "../../products/entities/product.entity";
 
 export class CreateFeatureDto {
+    ownerId: string;
     type: FeatureType;
     name: string;
     // Enumberables are choosen by admin
