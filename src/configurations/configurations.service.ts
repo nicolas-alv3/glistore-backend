@@ -29,9 +29,8 @@ export class ConfigurationsService {
     return `This action removes a #${id} configuration`;
   }
 
-  createBaseCofiguration(email: string) {
-    debugger
-    return this.configurationDAO.createBaseConfig(this.getBaseConfiguration(email))
+  async createBaseCofiguration(email: string) {
+    return await this.configurationDAO.createBaseConfig(this.getBaseConfiguration(email))
   }
 
   private getBaseConfiguration(email: string): Configuration {

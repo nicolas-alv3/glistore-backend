@@ -8,10 +8,7 @@ export class ConfigurationDao {
     constructor(@InjectModel("Configuration") private configurationModel: Model<Configuration>) {
     }
 
-    createBaseConfig(baseConfiguration: Configuration) {
-        const res = this.configurationModel.create(baseConfiguration);
-        console.log(res)
-
-        return res;
+    async createBaseConfig(baseConfiguration: Configuration) {
+        return await this.configurationModel.create(baseConfiguration);
     }
 }

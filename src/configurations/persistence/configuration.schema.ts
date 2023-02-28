@@ -24,5 +24,6 @@ export const ConfigurationSchema = new mongoose.Schema({
     phoneNumber: String,
     colorPalette: GColorPallette,
     logo: String,
-    menu: [GMenuItem]
+    menu: [GMenuItem],
+    userEmail: String
 })

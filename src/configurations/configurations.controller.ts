@@ -8,8 +8,8 @@ export class ConfigurationsController {
   constructor(private readonly configurationsService: ConfigurationsService) {}
 
   @Post("/base")
-  createBaseConfiguration(@Req() request: Request) {
-    return this.configurationsService.createBaseCofiguration(request.headers['user_email'] as string);
+  async createBaseConfiguration(@Req() request: Request) {
+    return await this.configurationsService.createBaseCofiguration(request.headers['user_email'] as string);
   }
 
   @Get()
