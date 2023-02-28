@@ -1,7 +1,7 @@
 import {Controller, Get, Post, Body, Patch, Param, Delete, Req} from '@nestjs/common';
 import { ConfigurationsService } from './configurations.service';
-import { UpdateConfigurationDto } from './dto/update-configuration.dto';
 import {Request} from "express";
+import {CreateConfigurationDto} from "./dto/create-configuration.dto";
 
 @Controller('configurations')
 export class ConfigurationsController {
@@ -12,23 +12,13 @@ export class ConfigurationsController {
     return await this.configurationsService.createBaseCofiguration(request.headers['user_email'] as string);
   }
 
-  @Get()
-  findAll() {
-    return this.configurationsService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.configurationsService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateConfigurationDto: UpdateConfigurationDto) {
-    return this.configurationsService.update(+id, updateConfigurationDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.configurationsService.remove(+id);
+  @Patch()
+  update(@Body() updateConfigurationDto: CreateConfigurationDto, @Req() request: Request) {
+    return this.configurationsService.update(request.headers['user_email'] as string, updateConfigurationDto);
   }
 }

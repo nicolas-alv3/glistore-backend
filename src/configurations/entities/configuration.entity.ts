@@ -1,4 +1,4 @@
-interface GColorPallette {
+export interface GColorPallette {
     primary: string,
     secondary: string,
     tertiary: string,
@@ -6,7 +6,7 @@ interface GColorPallette {
     primaryFont: string,
     secondaryFont: string
 }
-interface GMenuItem {
+export interface GMenuItem {
     href: string,
     text: string,
     subItems: GMenuItem []

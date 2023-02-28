@@ -11,4 +11,8 @@ export class ConfigurationDao {
     async createBaseConfig(baseConfiguration: Configuration) {
         return await this.configurationModel.create(baseConfiguration);
     }
+
+    updateConfig(config: Configuration) {
+        return this.configurationModel.updateOne({ userEmail: config.userEmail}, config)
+    }
 }
