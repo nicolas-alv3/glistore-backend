@@ -9,8 +9,8 @@ export class ConfigurationsService {
     constructor(private configurationDAO: ConfigurationDao) {
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} configuration`;
+    async findOne(userEmail: string) {
+        return await this.configurationDAO.getConfig(userEmail);
     }
 
     update(userEmail: string, updateConfigurationDto: CreateConfigurationDto) {
