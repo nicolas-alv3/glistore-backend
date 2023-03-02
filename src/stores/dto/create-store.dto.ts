@@ -1,6 +1,6 @@
-import {GColorPallette, GMenuItem} from "../entities/configuration.entity";
+import {GColorPallette, GMenuItem} from "../entities/store.entity";
 
-export class CreateConfigurationDto {
+export class CreateStoreDto {
     companyName: string;
     description: string;
     instaUser: string;

@@ -12,7 +12,7 @@ export interface GMenuItem {
     subItems: GMenuItem []
 }
 
-export interface Configuration {
+export interface Store {
     companyName: string;
     description: string;
     instaUser: string;
@@ -21,5 +21,6 @@ export interface Configuration {
     colorPalette: GColorPallette;
     logo: string;
     menu: GMenuItem[];
-    userEmail: string
+    userEmail: string;
+    username: string
 }

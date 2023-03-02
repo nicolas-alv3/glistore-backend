@@ -16,7 +16,8 @@ export const GColorPallette = new mongoose.Schema({
     secondaryFont: String
 })
 
-export const ConfigurationSchema = new mongoose.Schema({
+export const StoreSchema = new mongoose.Schema({
+    username: String, // Must be unique in the system
     companyName: String,
     description: String,
     instaUser: String,
