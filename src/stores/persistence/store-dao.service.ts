@@ -17,8 +17,8 @@ export class StoreDao {
         return this.configurationModel.updateOne({userEmail: store.userEmail}, store)
     }
 
-    async getStore(userEmail: string): Promise<Store> {
-        const res = await this.configurationModel.findOne({userEmail: userEmail});
+    async getStore(username: string): Promise<Store> {
+        const res = await this.configurationModel.findOne({username});
         if(!res) {
             throw new StoreNotFoundException();
         }

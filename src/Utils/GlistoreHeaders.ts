@@ -1,4 +1,4 @@
 export enum GlistoreHeaders {
-    USER_EMAIL = 'user_email',
-    USERNAME = 'username'
+    USERNAME = 'username',
+    USER_EMAIL = 'user_email'
 }

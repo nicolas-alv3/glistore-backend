@@ -9,8 +9,8 @@ export class StoreService {
     constructor(private configurationDAO: StoreDao) {
     }
 
-    async findOne(userEmail: string) {
-        return await this.configurationDAO.getStore(userEmail);
+    async findOne(user: string) {
+        return await this.configurationDAO.getStore(user);
     }
 
     update(userEmail: string, updateConfigurationDto: CreateStoreDto, username: string) {
