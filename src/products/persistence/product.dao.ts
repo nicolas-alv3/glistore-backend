@@ -9,8 +9,8 @@ export class ProductDao {
     constructor(@InjectModel("Product") private productModel: Model<Product>) {
     }
 
-    create(p: Product) {
-        return this.productModel.create(p);
+    create(p: Product, username: string) {
+        return this.productModel.create({...p, username});
     }
 
     update(product: Product, id: string) {
@@ -21,7 +21,7 @@ export class ProductDao {
         return this.productModel.deleteOne({_id: id});
     }
 
-    findAll(query: FindProductQuery) {
+    findAll(query: FindProductQuery, username: string) {
         return this.productModel.find({
             $and: [
                 {
@@ -31,6 +31,8 @@ export class ProductDao {
                     ]
                 },
                 query.category.length ? {category: {$in: query.category}} : {}
+                ,
+                {username}
             ]
         }).skip(query.page * query.pageSize).limit(query.pageSize).exec();
     }

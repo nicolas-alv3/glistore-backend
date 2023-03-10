@@ -15,12 +15,12 @@ export class ProductsService {
   }
 
 
-  async create(p: Product) {
-      return this.productDao.create(p)
+  async create(p: Product, username: string ) {
+      return this.productDao.create(p, username)
   }
 
-  async findAll(query: FindProductQuery) {
-    return this.productDao.findAll(query);
+  async findAll(query: FindProductQuery, username: string) {
+    return this.productDao.findAll(query, username);
   }
 
   async findOne(id: string) {

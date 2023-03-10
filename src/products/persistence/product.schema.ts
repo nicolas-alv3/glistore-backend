@@ -29,5 +29,5 @@ export const ProductSchema = new mongoose.Schema({
     isTrending: Boolean,
     visible: Boolean,
     date: Date,
-    userEmail: String
+    username: String
 })
