@@ -15,8 +15,8 @@ export class TemplatesController {
   }
 
   @Get()
-  findAll() {
-    return this.templatesService.findAll();
+  findAll(@Req() request: Request) {
+    return this.templatesService.findAll(request.headers[GlistoreHeaders.USERNAME] as string);
   }
 
   @Get(':id')

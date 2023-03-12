@@ -14,8 +14,8 @@ export class TemplatesService {
         return this.templatesDAO.create({...createTemplateDto, username});
     }
 
-    findAll() {
-        return `This action returns all templates`;
+    findAll(username: string) {
+        return this.templatesDAO.findAll(username);
     }
 
     findOne(id: string) {

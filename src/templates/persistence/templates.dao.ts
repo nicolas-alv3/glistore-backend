@@ -25,4 +25,8 @@ export class TemplatesDao {
             throw new GlistoreNotFoundException("Template not found")
         }
     }
+
+    findAll(username: string) {
+        return this.templateModel.find({username});
+    }
 }
