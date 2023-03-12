@@ -2,25 +2,25 @@ import {Injectable} from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
 import {Store} from "../entities/store.entity";
-import {StoreNotFoundException} from "../exception/StoreNotFoundException";
+import {GlistoreNotFoundException} from "../exception/GlistoreNotFoundException";
 
 @Injectable()
 export class StoreDao {
-    constructor(@InjectModel("Store") private configurationModel: Model<Store>) {
+    constructor(@InjectModel("Store") private storeModel: Model<Store>) {
     }
 
     async createBasicStore(basicStore: Store) {
-        return await this.configurationModel.create(basicStore);
+        return await this.storeModel.create(basicStore);
     }
 
     updateStore(store: Store) {
-        return this.configurationModel.updateOne({userEmail: store.userEmail}, store)
+        return this.storeModel.updateOne({userEmail: store.userEmail}, store)
     }
 
     async getStore(username: string): Promise<Store> {
-        const res = await this.configurationModel.findOne({username});
+        const res = await this.storeModel.findOne({username});
         if(!res) {
-            throw new StoreNotFoundException();
+            throw new GlistoreNotFoundException("Store not found");
         }
         return res as unknown as Store;
     }
