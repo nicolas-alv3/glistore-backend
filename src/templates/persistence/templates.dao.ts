@@ -29,4 +29,13 @@ export class TemplatesDao {
     findAll(username: string) {
         return this.templateModel.find({username});
     }
+
+    async delete(id: string) {
+        const res = await this.templateModel.deleteOne({"_id": id}).exec();
+        if(res) {
+            return res;
+        } else {
+            throw new GlistoreNotFoundException("Template not found")
+        }
+    }
 }

@@ -29,7 +29,7 @@ export class TemplatesService {
         );
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} template`;
+    remove(id: string) {
+        return this.templatesDAO.delete(id);
     }
 }
