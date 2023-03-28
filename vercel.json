@@ -7,7 +7,7 @@
   "outputDirectory": "dist",
   "builds": [
     {
-      "src": "/main.js",
+      "src": "src/main.ts",
       "use": "@vercel/node"
     }
   ],
@@ -16,7 +16,7 @@
   ],
   "headers": [
     {
-      "source": "/api/v1/(.*)",
+      "source": "/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
