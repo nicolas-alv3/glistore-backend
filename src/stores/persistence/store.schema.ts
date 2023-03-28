@@ -26,5 +26,6 @@ export const StoreSchema = new mongoose.Schema({
     colorPalette: GColorPallette,
     logo: String,
     menu: [GMenuItem],
-    userEmail: String
+    userEmail: String,
+    categories: [String]
 })

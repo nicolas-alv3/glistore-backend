@@ -23,6 +23,7 @@ export class StoreService {
 
     private getBasicStore(email: string, username: string): Store {
         return {
+            categories: [],
             companyName: "Test name",
             description: "Test config",
             instaUser: "test.user",
@@ -45,5 +46,9 @@ export class StoreService {
 
     private getUpdatedStore(userEmail: string, updateConfigurationDto: CreateStoreDto, username: string): Store {
         return {...updateConfigurationDto, userEmail, username};
+    }
+
+    async createCategory(categories: string[], userEmail: string, username: string) {
+        return this.configurationDAO.updateCategory(categories, userEmail, username);
     }
 }

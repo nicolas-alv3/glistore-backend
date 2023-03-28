@@ -22,5 +22,6 @@ export interface Store {
     logo: string;
     menu: GMenuItem[];
     userEmail: string;
-    username: string
+    username: string;
+    categories: string[]
 }

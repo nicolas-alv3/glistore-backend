@@ -24,4 +24,8 @@ export class StoreDao {
         }
         return res as unknown as Store;
     }
+
+    updateCategory(categories: string[], userEmail: string, username: string) {
+        return this.storeModel.updateOne({username}, { $set : { categories }})
+    }
 }

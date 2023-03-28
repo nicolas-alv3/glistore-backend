@@ -9,6 +9,7 @@ export class CreateStoreDto {
     colorPalette: GColorPallette;
     logo: string;
     menu: GMenuItem[];
-    userEmail: string
+    userEmail: string;
+    categories: string[];
 }
 
