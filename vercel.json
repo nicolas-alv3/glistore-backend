@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run start",
+  "framework": null,
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
   "builds": [
     {
       "src": "src/main.ts",
