@@ -1,13 +1,13 @@
 export class GenericGlistoreException {
-    #message: string;
+    private readonly message: string;
 
     constructor(message: string) {
-        this.#message = message;
+        this.message = message;
     }
 
     toString() {
         return `
-        [ ERROR ] Glistore Exception raised with message ${this.#message}
+        [ ERROR ] Glistore Exception raised with message ${this.message}
         `
     }
 }
