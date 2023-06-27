@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpStatus, Patch, Post, Req, Res} from '@nestjs/common';
+import {Body, Controller, Get, HttpStatus, Logger, Param, Patch, Post, Query, Req, Res} from '@nestjs/common';
 import {StoreService} from './store.service';
 import {Request, Response} from "express";
 import {CreateStoreDto} from "./dto/create-store.dto";
@@ -6,7 +6,13 @@ import {GlistoreHeaders} from "../Utils/GlistoreHeaders";
 
 @Controller('stores')
 export class StoreController {
+    private readonly logger = new Logger(StoreController.name);
     constructor(private readonly configurationsService: StoreService) {
+    }
+
+    @Post("/")
+    async create(@Body() createStoreDTO: CreateStoreDto, @Req() request: Request) {
+        return this.configurationsService.create({...createStoreDTO, username: createStoreDTO.username.toLocaleLowerCase()});
     }
 
     @Post("/basic")
@@ -25,13 +31,19 @@ export class StoreController {
     }
 
     @Get()
-    async findOne(@Req() request: Request, @Res() res: Response) {
+    async findStore(@Req() request: Request, @Res() res: Response) {
+        this.logger.log("Attempt to find store")
         try {
-            const config = await this.configurationsService.findOne(request.headers[GlistoreHeaders.USERNAME] as string);
+            let config;
+            if(request.query.email) {
+                config = await this.configurationsService.findByEmail(request.query.email as string);
+            }
+            else {
+                config = await this.configurationsService.findOne(request.headers[GlistoreHeaders.USERNAME] as string);
+            }
             res.json(config);
         } catch (e) {
             res.status(HttpStatus.NOT_FOUND).json({error: "Configuration not found"})
         }
     }
-
 }

@@ -2,6 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {CreateStoreDto} from './dto/create-store.dto';
 import {Store} from "./entities/store.entity";
 import {StoreDao} from "./persistence/store-dao.service";
+import DTOConverter from "../Utils/DTOConverter";
 
 @Injectable()
 export class StoreService {
@@ -14,14 +15,26 @@ export class StoreService {
     }
 
     update(userEmail: string, updateConfigurationDto: CreateStoreDto, username: string) {
-        return this.configurationDAO.updateStore(this.getUpdatedStore(userEmail,  updateConfigurationDto, username));
+        return this.configurationDAO.updateStore(StoreService.getUpdatedStore(userEmail, updateConfigurationDto, username));
     }
 
     async createBasicStore(email: string, username: string) {
-        return await this.configurationDAO.createBasicStore(this.getBasicStore(email, username))
+        return await this.configurationDAO.createStore(StoreService.getBasicStore(email, username))
     }
 
-    private getBasicStore(email: string, username: string): Store {
+    async createCategory(categories: string[], userEmail: string, username: string) {
+        return this.configurationDAO.updateCategory(categories, userEmail, username);
+    }
+
+    async findByEmail(email: string) {
+        return this.configurationDAO.getStoreByEmail(email);
+    }
+
+    create(store: CreateStoreDto) {
+        return this.configurationDAO.createStore(DTOConverter.toEntity<CreateStoreDto, Store>(store, new Store()));
+    }
+
+    private static getBasicStore(email: string, username: string): Store {
         return {
             categories: [],
             companyName: "Test name",
@@ -41,14 +54,10 @@ export class StoreService {
             menu: [],
             userEmail: email,
             username
-        }
+        } as unknown as Store
     }
 
-    private getUpdatedStore(userEmail: string, updateConfigurationDto: CreateStoreDto, username: string): Store {
-        return {...updateConfigurationDto, userEmail, username};
-    }
-
-    async createCategory(categories: string[], userEmail: string, username: string) {
-        return this.configurationDAO.updateCategory(categories, userEmail, username);
+    private static getUpdatedStore(userEmail: string, updateConfigurationDto: CreateStoreDto, username: string): Store {
+        return {...updateConfigurationDto, userEmail, username} as unknown as Store;
     }
 }

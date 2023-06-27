@@ -6,6 +6,10 @@ class DTOConverter {
                 // @ts-ignore
                 response = { ...response, [k]: dto[k]};
             }
+            if(Object.keys(entity).includes(`_${k}`)) {
+                // @ts-ignore
+                response = { ...response, [k]: dto[k]};
+            }
         })
         return response;
     }

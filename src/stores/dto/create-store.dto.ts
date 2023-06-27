@@ -11,5 +11,6 @@ export class CreateStoreDto {
     menu: GMenuItem[];
     userEmail: string;
     categories: string[];
+    username: string;
 }
 
